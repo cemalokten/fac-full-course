@@ -1,18 +1,21 @@
 const express = require('express');
-const { nextTick } = require('process');
-const dogs = require('./dogs.js');
+
+const posts = require('./posts.js');
 
 const server = express();
 
-server.get('/:input', (request, response) => {
-  const input = request.query.input || '';
+server.get('/', (request, response) => {
+  const search = request.query.search || '';
 
-  const dogsArray = Object.values(dogs);
   let listItems = '';
-  for (const dog of dogsArray) {
-    const match = (listItems += `<li>${dog.name}</li>`);
+
+  for (const post of Object.values(posts)) {
+    const match = post.title.toLowerCase().includes(search.toLowerCase());
+
+    if (match || !search) {
+      listItems += `<li>${post.title} - ${post.body}</li>`;
+    }
   }
-  const dogList = `<ul>${listItems}</ul>`;
 
   const html = `
   <!doctype html>
@@ -22,15 +25,20 @@ server.get('/:input', (request, response) => {
       <title>Dogs!</title>
     </head>
     <body>
-      <ul>${dogList}</ul>
+    
+      <ul>${listItems}</ul>
 
+         <form method="POST">
+        <label id="search">Search dogs</label>
+        <input id="search" type="search" name="search" placeholder="E.g. rover">
+        <button>Search</button>
+      </form>
     </body>
-  </html>
-  `;
-  const input = request.params.input;
-  console.log(input);
+  </html>`;
+
   response.send(html);
 });
 
 const PORT = 3333;
+
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
