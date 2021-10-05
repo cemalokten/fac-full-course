@@ -1,0 +1,19 @@
+{
+  "name": "learn-node-error-handling",
+  "version": "1.0.0",
+  "description": "Learn how to handle different kinds of errors in your Node server.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -L workshop/server.js",
+    "test": "./node_modules/.bin/cypress"
+  },
+  "keywords": [],
+  "author": "Oliver Phillips <hello@oliverjam.es> (https://oliverjam.es/)",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
