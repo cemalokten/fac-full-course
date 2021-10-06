@@ -1,5 +1,6 @@
 const db = require("../database/connection.js");
 const layout = require("../layout.js");
+const model = require("../database/model.js");
 
 function get(request, response) {
   const html = layout(

@@ -10,6 +10,12 @@ server.get("/", home.get);
 server.get("/try-catch", tryCatch.get);
 server.get("/rejection", rejection.get);
 
+process.on("unhandledRejection", (error) => {
+  console.error(error);
+  process.exit(1);
+});
+
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+
