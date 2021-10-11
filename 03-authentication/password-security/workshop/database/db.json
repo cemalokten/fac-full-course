@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "e@e.com",
+      "hashedPassword": "27a84712e4b22c415fc544d55cdee82327a829f96d03329457f76ebf9af4dcaa",
+      "id": 1633959120368
+    },
+    {
+      "email": "hello@hello.com",
+      "password": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      "id": 1633959933216
+    },
+    {
+      "email": "123@abc.com",
+      "password": "$2a$10$Q3url5muojo1hDG.eu2Od.a0SgVZRzTzkn3rcyF/nt7TroGpsvP0W",
+      "id": 1633962097281
+    }
+  ]
+}
