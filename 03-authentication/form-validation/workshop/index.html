@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn form validation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1>Create an account</h1>
+  <form>
+    <label for="email">Email <span aria-hidden="true">*</span></label>
+    <input required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" id="email" aria-invalid="false" />
+
+    <label for="password">Password <span aria-hidden="true">*</span></label>
+
+    <input required id="password" aria-describedby="pw_desc" type="password" pattern=".*\d.*" minlength="8"
+      aria-invalid="false" />
+
+    <div id="pw_desc">
+      <ul>Password must:
+        <li>contain one number</li>
+        <li>be at least 8 characters long</li>
+      </ul>
+    </div>
+
+    <button>Sign up</button>
+  </form>
+  <script src="index.js"></script>
+</body>
+
+</html>
