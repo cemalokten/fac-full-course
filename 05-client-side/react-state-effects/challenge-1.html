@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>Component Proponent | FAC React</title>
+
+<body>
+  <!-- These scripts will make React and ReactDOM globally available. -->
+  <script src="https://unpkg.com/react@%5E17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@%5E17/umd/react-dom.development.js"></script>
+  <!-- This will let us write JSX and ES6 in a script tag with a special type of "text/babel" -->
+  <script src="https://unpkg.com/babel-standalone@%5E6/babel.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    // function Counter(props) {
+    //   const [count, setCount] = React.useState(-234234);
+    //   const increment = () => setCount(count + 1000);
+    //   return <button onClick={increment}>Count is {count}</button>;
+    // }
+
+    const Toggle = (props) => {
+      const [toggle, toggleFn] = React.useState(false);
+      const activate = () => toggleFn(!toggle)
+      React.useEffect(() => {
+        document.title = `Toggle: ${toggle}`;
+      }, [toggle]);
+      return <div>
+        <button onClick={activate}>Toggle</button>
+        <div>{toggle ? props.children : null}</div>
+
+      </div>;
+    }
+
+    const MoustPosition = (props) => {
+      const [{ x, y }, updatePosition] = React.useState({ x: 0, y: 0 });
+
+      const handleMouseMove = (e) => {
+        updatePosition({ x: [e.x], y: [e.y] })
+      };
+
+      React.useEffect(() => {
+        window.addEventListener('mousemove', handleMouseMove)
+
+        return () => window.removeEventListener('mousemove', handleMouseMove)
+      }, [x, y])
+
+      return <div>{x}:{y}</div>
+    }
+
+    function App() {
+      return <Toggle><MoustPosition /></Toggle>;
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</body>
+
+</html>
